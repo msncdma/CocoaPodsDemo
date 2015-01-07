@@ -1,0 +1,47 @@
+//
+//  PchFile.pch
+//  CocoaPodsDemo
+//
+//  Created by song.he on 14/12/3.
+//  Copyright (c) 2014年 song.he. All rights reserved.
+//
+
+#ifndef CocoaPodsDemo_PchFile_pch
+#define CocoaPodsDemo_PchFile_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#endif
+
+
+#ifdef __OBJC__
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import "UIViewExt.h"
+#import "Model.h"
+#endif
+
+#ifdef DEBUG
+#define DLog(format, ...) NSLog(format, ## __VA_ARGS__)
+#else
+#define DLog(format, ...)
+#endif
+
+#define AutoFit(val) IS_IPHONE6 ? (int)(val*375/320) : (IS_IPHONE6PLUS ? (int)(val*414/320) : val)
+//颜色
+#define Color(r,g,b,a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
+
+//系统版本判断
+#define IS_IOS7 [[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0
+//设备判断
+#define IS_IPHONE5 [UIScreen mainScreen].bounds.size.height == 568
+
+//不带导航栏
+#define CGRECT_NO_NAV(x,y,w,h) CGRectMake((x), (y+(IS_IOS7?20:0)), (w), (h))
+//带导航栏
+#define CGRECT_HAVE_NAV(x,y,w,h) CGRectMake((x), (y+(IS_IOS7?64:0)), (w), (h))
+
+//屏幕的宽&高
+#define kScreenHeight [UIScreen mainScreen].bounds.size.height
+#define kScreenWidth  [UIScreen mainScreen].bounds.size.width
